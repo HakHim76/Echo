@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", messageRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../../client/dist")));
