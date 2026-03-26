@@ -15,7 +15,7 @@ const __dirname = path.resolve();
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", messageRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 async function startServer() {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect("mongodb://127.0.0.1:27017/echo");
     console.log("mongo up and running");
 
     app.listen(PORT, () => {
