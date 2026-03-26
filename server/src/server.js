@@ -1,11 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import path from "path";
+import { ENV } from "./lib/env.js";
 
 const app = express();
 
@@ -15,9 +13,9 @@ const __dirname = path.resolve();
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", messageRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = ENV.PORT;
 
-if (process.env.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
   app.get("*", (req, res) => {
@@ -27,7 +25,8 @@ if (process.env.NODE_ENV === "production") {
 
 async function startServer() {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/echo");
+    console.log(PORT);
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("mongo up and running");
 
     app.listen(PORT, () => {
