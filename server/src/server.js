@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser"
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import path from "path";
@@ -8,6 +9,7 @@ import { ENV } from "./lib/env.js";
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser())
 const __dirname = path.resolve();
 
 app.use("/api/auth", authRoutes);
