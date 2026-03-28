@@ -13,7 +13,7 @@ app.use(cookieParser())
 const __dirname = path.resolve();
 
 app.use("/api/auth", authRoutes);
-app.use("/api/auth", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 const PORT = ENV.PORT;
 

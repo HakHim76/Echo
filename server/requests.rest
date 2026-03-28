@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "fullName": "Abdul Hakeem",
-  "email": "abdulhakeembawah@gmail.com",
+  "email": "hakbawah22@gmail.com",
   "password": "123456"
 }
 
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
   
-  "email": "abdulhakeembawah@gmail.com",
+  "email": "hakbawah22@gmail.com",
   "password": "123456"
 }
 
@@ -21,3 +21,12 @@ Content-Type: application/json
 POST http://localhost:3000/api/auth/logout
 Content-Type: application/json
 
+###
+POST  http://localhost:3000/api/messages/send/69c50d72101e76605686d426
+Content-Type: application/json
+
+{
+  "text": "hey you hows it going"
+}
+###
+GET  http://localhost:3000/api/messages/chats
