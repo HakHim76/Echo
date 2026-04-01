@@ -1,14 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser"
+import cors from "cors"
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import path from "path";
 import { ENV } from "./lib/env.js";
 
 const app = express();
-
+app.use(cors({
+  origin: ENV.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
+
 app.use(cookieParser())
 const __dirname = path.resolve();
 
