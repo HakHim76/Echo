@@ -49,7 +49,28 @@ finally{
 } 
 
   
-}
+},
+getMessagesByUserId: async (userId) =>
+    {
+        set({isMessagesLoading:true})
+    try {
+        const res = await axiosInstance.get(`/messages/${userId}`)
+        set({messages : res.data})
+  } catch (error) {
+     console.log(error);
+
+  const message =
+    error?.response?.data?.message ||
+    error?.message ||
+    "Something went wrong";
+
+  console.error("Error fetching messages:", message);
+        
+    }
+    finally{
+        set({isMessagesLoading:false})
+    }
+    }
 
 
 
