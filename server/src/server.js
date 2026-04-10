@@ -6,8 +6,9 @@ import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import path from "path";
 import { ENV } from "./lib/env.js";
+import {app, server} from "./lib/socket.js"
 
-const app = express();
+
 app.use(cors({
   origin: ENV.CLIENT_URL,
   credentials: true
@@ -36,7 +37,7 @@ async function startServer() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("mongo up and running");
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`listening on port:${PORT}`);
     });
   } catch (error) {
